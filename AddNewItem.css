@@ -1,0 +1,27 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+input{
+    width: 20rem;
+    height: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+label{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+#upload {
+  width: 1rem;
+  height: 1rem;
+}
+.data {
+  display: flex;
+  flex-direction: row;
+}
+.form-example{
+    display:grid;
+    grid-template-columns: 0.4fr 2fr;
+}
