@@ -1,9 +1,101 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="table.css">
         <title> CMS employees</title>
     </head>
     <body>
-
+        <h3>Manage employees</h3>
+        <table class="zebra"> 
+            <thead> 
+            <tr> 
+                <th>Poza</th> 
+                <th>Nume</th> 
+                <th>Prenume</th> 
+                <th>Email</th> 
+                <th>Sex</th> 
+                <th>Data nasterii</th> 
+                <th>Optiuni</th>
+            </tr> 
+            </thead> 
+            <tbody> 
+            <tr> 
+                <td>
+                    <img src="./images/me.jpeg"/>
+                </td> 
+                <td>John</td> 
+                <td>Smith</td> 
+                <td>jsmith@gmail.com</td> 
+                <td>
+                    <select>
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </td> 
+                <td>13 Iunie 1995</td> 
+            </tr> 
+            <tr> 
+                <td>
+                    <img src="./images/pic1.png"/>
+                </td> 
+                <td>Bach</td> 
+                <td>Frank</td> 
+                <td>fbach@yahoo.com</td> 
+                <td>
+                    <select>
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </td> 
+                <td>14 Iunie 1995</td> 
+            </tr> 
+            <tr> 
+                <td>
+                    <img src="./images/pic2.png"/>
+                </td> 
+                <td>Doe</td> 
+                <td>Jason</td> 
+                <td>jdoe@hotmail.com</td> 
+                <td>
+                    <select>
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </td> 
+                <td>15 Iunie 1995</td> 
+                <td>
+                    <button class="options">
+                        <img src="./images/editButton.jpg"/>
+                    </button>
+                    <button>Delete</button>
+                </td> 
+                
+            </tr> 
+            <tr> 
+                <td>
+                    <img src="./images/pic3.png"/>
+                </td> 
+                <td>Conway</td> 
+                <td>Tim</td> 
+                <td>tconway@earthlink.net</td> 
+                <td>
+                    <select>
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                    </select>
+                </td> 
+                <td>16 Iunie 1995</td> 
+            </tr> 
+            
+            </tbody> 
+            </table> 
     </body>
 </html>
