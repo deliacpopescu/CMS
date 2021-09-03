@@ -2,7 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="AddNewItem.css" />
-    <script type="text/javascript" src="./AddNewItem.js"></script>
+    <script type="text/javascript" src="./Functions/AddNewItem.js"></script>
+    <script src="Functions/EmailValidation.js"></script>
   </head>
   <body>
     <div class="picture">
@@ -26,7 +27,7 @@
         </div>
         <div class="form-example">
           <label for="email">Email</label>
-          <input type="text" name="email" id="email" required />
+          <input type="text" name="email" id="email" onchange="validateEmail()" required />
         </div>
         <div class="form-example">
           <label for="sex">Sex</label>
