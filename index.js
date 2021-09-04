@@ -25,7 +25,7 @@ function tableRow(rowData) {
         <button class="options" onClick="editEntry(this)">
             <img src="/images/edit.png"/>
         </button>
-        <button>
+        <button onClick="deleteEntry(this)">
             <img src="/images/delete.png"/>
         </button>
     </td>
@@ -84,7 +84,7 @@ function saveEntry() {
     tableData = JSON.parse(tableData);
 
     let modal = document.getElementById("addEntryModal");
-    const id = modal.querySelector(".modal-content").id || Math.max(...tableData.map(o => o.id), 0) + 1;
+    const id = parseInt(modal.querySelector(".modal-content").id) || Math.max(...tableData.map(o => o.id), 0) + 1;
     const rowData = {
         id: id,
         img: modal.querySelector("#imagePlaceholder").src,
@@ -130,7 +130,6 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-
 function editEntry(btnElem) {
     let rowElem = btnElem.parentNode.parentNode;
     const rowData = {
@@ -153,4 +152,18 @@ function editEntry(btnElem) {
     modal.querySelector("#birthDate").value = rowData.birthDate;
 
     showModal();
+}
+
+function deleteEntry(btnElem) {
+    let rowElem = btnElem.parentNode.parentNode;
+    const entryId = parseInt(rowElem.id.replace("employee-", ""));
+    
+    let tableData = localStorage.getItem("tableData") || '[]';
+    tableData = JSON.parse(tableData);
+    const entryIndex = tableData.findIndex((obj => obj.id == entryId));
+    tableData.splice(entryIndex, 1);
+    localStorage.setItem("tableData", JSON.stringify(tableData));
+
+    const table = document.querySelector("#table > tbody");
+    table.removeChild(rowElem);
 }
