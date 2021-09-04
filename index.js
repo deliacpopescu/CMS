@@ -1,4 +1,9 @@
 window.onload = function () {
+    let minDate = new Date();
+    minDate.setFullYear(minDate.getFullYear() - 16);
+    minDate = date2str(minDate, "yyyy-MM-dd");
+    document.getElementById("birthDate").setAttribute("min", minDate);
+
     tableData();
 };
 
@@ -20,7 +25,7 @@ function tableRow(rowData) {
     <td>${rowData.name}</td>
     <td>${rowData.email}</td>
     <td>${rowData.gender}</td>
-    <td>${rowData.birthDate}</td>
+    <td>${new Date(rowData.birthDate).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' })}</td>
     <td> 
         <button class="options" onClick="editEntry(this)">
             <img src="/images/edit.png"/>
@@ -44,7 +49,7 @@ function tableData() {
             name: "Smith",
             email: "jsmith@gmail.com",
             gender: "F",
-            birthDate: "13 Iunie 1995",
+            birthDate: "2020-01-01",
         },
     ];
 
@@ -167,3 +172,23 @@ function deleteEntry(btnElem) {
     const table = document.querySelector("#table > tbody");
     table.removeChild(rowElem);
 }
+
+
+function date2str(date, format) {
+    var z = {
+        M: date.getMonth() + 1,
+        d: date.getDate(),
+        h: date.getHours(),
+        m: date.getMinutes(),
+        s: date.getSeconds()
+    };
+    format = format.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
+        return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
+    });
+
+    return format.replace(/(y+)/g, function(v) {
+        return date.getFullYear().toString().slice(-v.length)
+    });
+}
+
+
