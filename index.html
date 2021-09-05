@@ -19,34 +19,34 @@
 <body>
   <h3>Baza de date angajati</h3>
   <div class="d-flex justify-content-between">
-    <div id="addEntryButton" >
-      <button  class="btn btn-primary add" type="button" onClick="showModal()">
+    <div id="addEntryButton">
+      <button class="btn btn-primary add" type="button" onClick="showModal()">
         Adauga
       </button>
     </div>
     <div id="searchBar">
-    <input  type="text" placeholder="Cauta..">
-    <button type="button"  class="btn btn-primary m-0">Cauta</button>
+      <input type="text" placeholder="Cauta..">
+      <button type="button" class="btn btn-primary m-0" onclick="searchFor(this)">Cauta</button>
     </div>
   </div>
   <div class="fixTableHead">
-  <table id="table" class="zebra col-11 m-auto">
-    <thead>
-      <tr>
-        <th sort-type="none">Poza</th>
-        <th id="thead-lastName" sort-type="none" onclick="sortBy(this)">Nume</th>
-        <th id="thead-name" sort-type="none" onclick="sortBy(this)">Prenume</th>
-        <th id="thead-email" sort-type="none" onclick="sortBy(this)">Email</th>
-        <th id="thead-gender" sort-type="none" onclick="sortBy(this)">Gen</th>
-        <th id="thead-birthDate" sort-type="none" onclick="sortBy(this)">Data nasterii</th>
-        <th sort-type="none">Optiuni</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-</div>
-  
+    <table id="table" class="zebra col-11 m-auto">
+      <thead>
+        <tr>
+          <th sort-type="none">Poza</th>
+          <th id="thead-lastName" sort-type="none" onclick="sortBy(this)">Nume</th>
+          <th id="thead-name" sort-type="none" onclick="sortBy(this)">Prenume</th>
+          <th id="thead-email" sort-type="none" onclick="sortBy(this)">Email</th>
+          <th id="thead-gender" sort-type="none" onclick="sortBy(this)">Gen</th>
+          <th id="thead-birthDate" sort-type="none" onclick="sortBy(this)">Data nasterii</th>
+          <th sort-type="none">Optiuni</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
   <div id="addEntryModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">

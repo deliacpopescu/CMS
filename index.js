@@ -289,3 +289,20 @@ function sortBy(headerElem) {
     tableContent(tableData);
 }
 
+
+function searchFor(searchBtn) {
+    let searchCriteria = searchBtn.previousElementSibling.value;
+
+    let tableData = localStorage.getItem("tableData") || '[]';
+    tableData = JSON.parse(tableData);
+
+    tableData = tableData.filter(elem => elem.name.includes(searchCriteria) 
+            || elem.lastName.includes(searchCriteria)
+            || elem.email.includes(searchCriteria)
+            || elem.gender.includes(searchCriteria)
+            || new Date(elem.birthDate).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }).includes(searchCriteria)
+    );
+    
+    tableContent(tableData);
+}
+
