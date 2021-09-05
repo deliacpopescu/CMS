@@ -17,7 +17,8 @@ window.onclick = function (event) {
 
 
 function tableRow(rowData) {
-    return `<tr id="employee-${rowData.id}">
+    return `
+<tr id="employee-${rowData.id}">
     <td> 
         <img src="${rowData.img}"/>
     </td>
@@ -41,10 +42,11 @@ function tableRow(rowData) {
 function tableData() {
     let table = document.getElementById("table");
 
+    // default data just not to show an empty table at new run
     let tableData = [
         {
             id: 0,
-            img: "./../images/pic1.png",
+            img: "./images/pic1.png",
             lastName: "John",
             name: "Smith",
             email: "jsmith@gmail.com",
@@ -190,5 +192,4 @@ function date2str(date, format) {
         return date.getFullYear().toString().slice(-v.length)
     });
 }
-
 

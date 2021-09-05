@@ -1,13 +1,24 @@
 body {
     font: normal medium/1.4 sans-serif;
+   
+  }
+  h3{
+    text-align: center;
+    margin-top:5%;
+  }
+  #searchBar{
+    margin:20px;
+    height:2.3rem;
   }
   table {
     border-collapse: collapse;
     width: 100%;
+    margin:20px;
+    table-layout: fixed;
   }
   th, td {
       /* width: 0.1rem;; */
-    padding: 0.25rem;
+    /* padding: 0.25rem; */
     text-align: center;
     border: 1px solid #ccc;
   }
@@ -27,4 +38,36 @@ img{
 .options:hover{
     background:#919196;
     
+}
+#addEntryButton{
+  margin-left: 65px;
+}
+#searchBar{
+  margin-right: 65px;
+}
+/* de aici  */
+@media only screen and (max-width: 600px) {
+ 
+.fixTableHead {
+  width: 500px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+  .fixTableHead tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 50px;
+}
+.fixTableHead thead tr {
+  display: block;
+}
+.fixTableHead th,
+.fixTableHead  td {
+  padding: 5px 10px;
+  width: 200px;
+}
+th {
+  background: #ABDD93;
+}
 }

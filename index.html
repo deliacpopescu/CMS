@@ -17,13 +17,25 @@
 </head>
 
 <body>
-  <h3>Manage employees</h3>
-  <table id="table" class="zebra">
+  <h3>Baza de date angajati</h3>
+  <div class="d-flex justify-content-between">
+    <div id="addEntryButton" >
+      <button  class="btn btn-primary add" type="button" onClick="showModal()">
+        Adauga
+      </button>
+    </div>
+    <div id="searchBar">
+    <input  type="text" placeholder="Cauta..">
+    <button type="button"  class="btn btn-primary m-0">Cauta</button>
+    </div>
+  </div>
+  <div class="fixTableHead">
+  <table id="table" class="zebra col-11 m-auto">
     <thead>
       <tr>
         <th>Poza</th>
-        <th>Prenume</th>
-        <th>Nume</th>
+        <th id="nume">Nume</th>
+        <th id="prenume">Prenume</th>
         <th>Email</th>
         <th>Gen</th>
         <th>Data nasterii</th>
@@ -33,12 +45,8 @@
     <tbody>
     </tbody>
   </table>
-
-  <div id="addEntryButton">
-    <button class="btn btn-primary m-0" type="button" onClick="showModal()">
-      Adauga
-    </button>
-  </div>
+</div>
+  
   <div id="addEntryModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -68,7 +76,7 @@
             <input class="mt-3" type="text" name="email" id="email" onchange="validateEmail()" required />
           </div>
           <div class="form-example">
-            <label for="gender">Sex</label>
+            <label for="gender">Gen</label>
             <select id="gender" name="gender" required>
               <option value="" selected hidden>Choose here</option>
               <option value="M">M</option>

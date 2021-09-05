@@ -1,8 +1,8 @@
-body {
+/* body {
   top: 20rem;
   display: grid;
   grid-template-columns: 1fr 2fr;
-}
+} */
 .picture {
   align-self: center;
 }
