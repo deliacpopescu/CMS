@@ -4,7 +4,7 @@ window.onload = function () {
     minDate = date2str(minDate, "yyyy-MM-dd");
     document.getElementById("birthDate").setAttribute("min", minDate);
 
-    tableData();
+    drawTable();
 };
 
 // When the user clicks anywhere outside of the modal, close it
@@ -39,9 +39,7 @@ function tableRow(rowData) {
 }
 
 
-function tableData() {
-    let table = document.getElementById("table");
-
+function drawTable() {
     // default data just not to show an empty table at new run
     let tableData = [
         {
@@ -60,11 +58,16 @@ function tableData() {
     tableData = localStorage.getItem("tableData") || JSON.stringify(tableData);
     tableData = JSON.parse(tableData);
 
+    tableContent(tableData);
+}
+
+function tableContent(tableData) {
     let tableBody = "";
     for (var i = 0; i < tableData.length; i++) {
         tableBody += tableRow(tableData[i]);
     }
 
+    let table = document.getElementById("table");
     table.getElementsByTagName("tbody")[0].innerHTML = tableBody;
 }
 
@@ -164,7 +167,7 @@ function editEntry(btnElem) {
 function deleteEntry(btnElem) {
     let rowElem = btnElem.parentNode.parentNode;
     const entryId = parseInt(rowElem.id.replace("employee-", ""));
-    
+
     let tableData = localStorage.getItem("tableData") || '[]';
     tableData = JSON.parse(tableData);
     const entryIndex = tableData.findIndex((obj => obj.id == entryId));
@@ -184,12 +187,105 @@ function date2str(date, format) {
         m: date.getMinutes(),
         s: date.getSeconds()
     };
-    format = format.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
+    format = format.replace(/(M+|d+|h+|m+|s+)/g, function (v) {
         return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
     });
 
-    return format.replace(/(y+)/g, function(v) {
+    return format.replace(/(y+)/g, function (v) {
         return date.getFullYear().toString().slice(-v.length)
     });
+}
+
+
+function sortBy(headerElem) {
+    let sortKey = headerElem.id;
+    let sortType = headerElem.getAttribute("sort-type")
+
+    let tableData = localStorage.getItem("tableData") || '[]';
+    tableData = JSON.parse(tableData);
+
+    switch (sortKey) {
+        case "thead-lastName":
+            switch (sortType) {
+                case "asc":
+                    tableData.sort((a, b) => (a.lastName > b.lastName) ? -1 : 1);
+                    sortType = "desc";
+                    break;
+                case "desc":
+                    sortType = "none";
+                    break;
+                default:
+                    tableData.sort((a, b) => (a.lastName > b.lastName) ? 1 : -1);
+                    sortType = "asc";
+                    break;
+            }
+            break;
+        case "thead-name":
+            switch (sortType) {
+                case "asc":
+                    tableData.sort((a, b) => (a.name > b.name) ? -1 : 1);
+                    sortType = "desc";
+                    break;
+                case "desc":
+                    sortType = "none";
+                    break;
+                default:
+                    tableData.sort((a, b) => (a.name > b.name) ? 1 : -1);
+                    sortType = "asc";
+                    break;
+            }
+            break;
+        case "thead-email":
+            switch (sortType) {
+                case "asc":
+                    tableData.sort((a, b) => (a.email > b.email) ? -1 : 1);
+                    sortType = "desc";
+                    break;
+                case "desc":
+                    sortType = "none";
+                    break;
+                default:
+                    tableData.sort((a, b) => (a.email > b.email) ? 1 : -1);
+                    sortType = "asc";
+                    break;
+            }
+            break;
+        case "thead-gender":
+            switch (sortType) {
+                case "asc":
+                    tableData.sort((a, b) => (a.gender > b.gender) ? -1 : 1);
+                    sortType = "desc";
+                    break;
+                case "desc":
+                    sortType = "none";
+                    break;
+                default:
+                    tableData.sort((a, b) => (a.gender > b.gender) ? 1 : -1);
+                    sortType = "asc";
+                    break;
+            }
+            break;
+        case "thead-birthDate":
+            switch (sortType) {
+                case "asc":
+                    tableData.sort((a, b) => (new Date(a.birthDate) > new Date(b.birthDate)) ? -1 : 1);
+                    sortType = "desc";
+                    break;
+                case "desc":
+                    sortType = "none";
+                    break;
+                default:
+                    tableData.sort((a, b) => (new Date(a.birthDate) > new Date(b.birthDate)) ? 1 : -1);
+                    sortType = "asc";
+                    break;
+            }
+            break;
+    }
+
+    for (let child of headerElem.parentElement.children) {
+        child.setAttribute("sort-type", "none");
+    }
+    headerElem.setAttribute("sort-type", sortType);
+    tableContent(tableData);
 }
 

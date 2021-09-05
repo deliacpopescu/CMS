@@ -33,13 +33,13 @@
   <table id="table" class="zebra col-11 m-auto">
     <thead>
       <tr>
-        <th>Poza</th>
-        <th id="nume">Nume</th>
-        <th id="prenume">Prenume</th>
-        <th>Email</th>
-        <th>Gen</th>
-        <th>Data nasterii</th>
-        <th>Optiuni</th>
+        <th sort-type="none">Poza</th>
+        <th id="thead-lastName" sort-type="none" onclick="sortBy(this)">Nume</th>
+        <th id="thead-name" sort-type="none" onclick="sortBy(this)">Prenume</th>
+        <th id="thead-email" sort-type="none" onclick="sortBy(this)">Email</th>
+        <th id="thead-gender" sort-type="none" onclick="sortBy(this)">Gen</th>
+        <th id="thead-birthDate" sort-type="none" onclick="sortBy(this)">Data nasterii</th>
+        <th sort-type="none">Optiuni</th>
       </tr>
     </thead>
     <tbody>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div>
-        <h5 class="m-5">Introduceti datele angajatului nou</h5>
+        <h5 class="m-5">Introduceti datele angajatului</h5>
         <form id="form" onSubmit="saveEntry()">
           <div class="form-example">
             <label for="lastName">Nume</label>
