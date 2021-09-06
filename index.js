@@ -1,8 +1,8 @@
 window.onload = function () {
-    let minDate = new Date();
-    minDate.setFullYear(minDate.getFullYear() - 16);
-    minDate = date2str(minDate, "yyyy-MM-dd");
-    document.getElementById("birthDate").setAttribute("min", minDate);
+    let maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 16);
+    maxDate = date2str(maxDate, "yyyy-MM-dd");
+    document.getElementById("birthDate").setAttribute("max", maxDate);
 
     drawTable();
 };
@@ -14,7 +14,6 @@ window.onclick = function (event) {
         closeModal();
     }
 }
-
 
 function tableRow(rowData) {
     return `
@@ -37,7 +36,6 @@ function tableRow(rowData) {
     </td>
 </tr>`;
 }
-
 
 function drawTable() {
     // default data just not to show an empty table at new run
@@ -70,7 +68,6 @@ function tableContent(tableData) {
     let table = document.getElementById("table");
     table.getElementsByTagName("tbody")[0].innerHTML = tableBody;
 }
-
 
 function showMyImage(fileInput) {
     var imageFile = fileInput.files[0];
@@ -126,7 +123,6 @@ function saveEntry() {
     closeModal();
 }
 
-
 // When the user clicks on the button, open the modal
 function showModal() {
     let modal = document.getElementById("addEntryModal");
@@ -159,7 +155,9 @@ function editEntry(btnElem) {
     modal.querySelector("#name").value = rowData.name;
     modal.querySelector("#email").value = rowData.email;
     modal.querySelector("#gender").value = rowData.gender;
-    modal.querySelector("#birthDate").value = rowData.birthDate;
+    let birthDate = new Date(rowData.birthDate);
+    birthDate.setMinutes(birthDate.getMinutes() - birthDate.getTimezoneOffset());
+    modal.querySelector("#birthDate").value = birthDate.toISOString().substring(0, 10);
 
     showModal();
 }
@@ -178,7 +176,6 @@ function deleteEntry(btnElem) {
     table.removeChild(rowElem);
 }
 
-
 function date2str(date, format) {
     var z = {
         M: date.getMonth() + 1,
@@ -195,7 +192,6 @@ function date2str(date, format) {
         return date.getFullYear().toString().slice(-v.length)
     });
 }
-
 
 function sortBy(headerElem) {
     let sortKey = headerElem.id;
@@ -288,7 +284,6 @@ function sortBy(headerElem) {
     headerElem.setAttribute("sort-type", sortType);
     tableContent(tableData);
 }
-
 
 function searchFor(searchBtn) {
     let searchCriteria = searchBtn.previousElementSibling.value;
