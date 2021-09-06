@@ -18,7 +18,7 @@
 
 <body>
   <h3>Baza de date angajati</h3>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex ">
     <div id="addEntryButton">
       <button class="btn btn-primary add" type="button" onClick="showModal()">
         Adauga
@@ -60,36 +60,39 @@
           <input id="imageUpload" type="file" accept="image/*" style="display: none" onchange="showMyImage(this)" />
         </div>
       </div>
-      <div>
-        <h5 class="m-5">Introduceti datele angajatului</h5>
+      <div class="align-items-center" >
+        <!-- <h5 class="m-5">Introduceti datele angajatului</h5> -->
         <form id="form" onSubmit="saveEntry()">
           <div class="form-example">
             <label for="lastName">Nume</label>
-            <input class="mt-3" type="text" name="lastName" id="lastName" required />
+            <input class="mt-3" type="text" name="lastName" id="lastName" placeholder="Email" oninvalid= "this.setCustomValidity('Introduceti numele.')" oninput="setCustomValidity('')" required />
           </div>
           <div class="form-example">
             <label for="name">Prenume</label>
-            <input class="mt-3" type="text" name="name" id="name" required />
+            <input class="mt-3" type="text" name="name" id="name" placeholder="Prenume" oninvalid= "this.setCustomValidity('Introduceti prenumele.')" oninput="setCustomValidity('')" required />
           </div>
           <div class="form-example">
             <label for="email">Email</label>
-            <input class="mt-3" type="text" name="email" id="email" onchange="validateEmail()" required />
+            <input class="mt-3" type="text" name="email" id="email" placeholder="Email" oninvalid= "this.setCustomValidity('Introduceti un email.')" oninput="setCustomValidity('')" onchange="validateEmail()" required />
           </div>
           <div class="form-example">
             <label for="gender">Gen</label>
-            <select id="gender" name="gender" required>
-              <option value="" selected hidden>Choose here</option>
+            <select class="mt-3" id="gender" name="gender" required>
+              <option value="" selected hidden>Selectati</option>
               <option value="M">M</option>
               <option value="F">F</option>
             </select>
           </div>
           <div class="form-example">
             <label for="birthDate">Data nasterii</label>
-            <input type="date" class="form-control mt-3" id="birthDate" name="birthDate" required />
+            <input type="date" class="form-control mt-3" id="birthDate" name="birthDate"oninvalid= "this.setCustomValidity('Introduceti un data nasterii.')" oninput="setCustomValidity('')" required />
           </div>
-          <button class="btn btn-primary m-0" type="submit">
-            Salveaza
-          </button>
+          <div class="text-center m-4"> 
+            <button class="btn btn-primary save" type="submit">
+              Salveaza
+            </button>
+          </div>
+          
         </form>
       </div>
 

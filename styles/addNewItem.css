@@ -13,7 +13,7 @@
   text-align: center;
 }
 #form {
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
 }
 input {
   width: 20rem;
@@ -23,11 +23,12 @@ input {
   margin-left: 1rem; */
   /* border-radius: 2px; */
 }
-#sex {
+#gender, #birthDate{
   margin-top: 0.8rem;
   height: 2rem;
   width: 20rem;
 }
+
 label {
   margin-top: 1rem;
   margin-left: 1rem;
@@ -43,17 +44,14 @@ label {
 }
 .form-example {
   display: grid;
-  grid-template-columns: 0.4fr 2fr;
+  grid-template-columns: 1fr 2fr;
+  
 }
-/* #add {
+.save{
   position: relative;
-  top: 10%;
-  left: 28%;
-  height: 40px;
-  width: 200px;
-  background-color: green;
-  color: white;
-} */
+  /* left: 50%; */
+  width:160px;
+}
 
 @media only screen and (max-width: 600px) {
   body {
