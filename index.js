@@ -157,7 +157,7 @@ function editEntry(btnElem) {
     modal.querySelector("#gender").value = rowData.gender;
     let birthDate = new Date(rowData.birthDate);
     birthDate.setMinutes(birthDate.getMinutes() - birthDate.getTimezoneOffset());
-    modal.querySelector("#birthDate").value = birthDate.toISOString().substring(0, 10);
+    modal.querySelector("#birthDate").value = bir.toISOString().substring(0, 10);
 
     showModal();
 }

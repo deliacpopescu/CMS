@@ -1,10 +1,15 @@
 body {
-    font: normal medium/1.4 sans-serif;
-   
+    /* font: normal medium/1.4 sans-serif; */
+    background-color:#DCD6F7;
+  }
+  thead{
+  background-color:#424874;
+  color:white;
   }
   h3{
     text-align: center;
     margin-top:5%;
+    color:#424874;
   }
   #searchBar{
     margin:20px;
@@ -17,13 +22,14 @@ body {
     table-layout: fixed;
   }
   th, td {
-      /* width: 0.1rem;; */
-    /* padding: 0.25rem; */
     text-align: center;
     border: 1px solid #ccc;
   }
-  tbody tr:nth-child(odd) {
-    background: #eee;
+  tr{
+    height:3rem;
+  }
+  tbody{
+    background:#F4EEFF;
   }
 img{
     border-radius: 50%;
@@ -43,35 +49,35 @@ img{
   color:green;
   
 }
+.btn{
+  height:3rem;
+}
 #addEntryButton{
-  margin-left: 65px;
+ width:100%;
+ padding: 0;
+ display: flex;
+ justify-content: space-between;
+}
+.addBtn{
+  background-color:#424874;
+  color:white;
+  border-radius: .25rem;
 }
 #searchBar{
-  margin-right: 65px;
+  margin: 0;
+  height: 44.8px;
+  border-radius: .25rem;
 }
-/* de aici  */
-@media only screen and (max-width: 600px) {
- 
-.fixTableHead {
-  width: 500px;
-  table-layout: fixed;
-  border-collapse: collapse;
+#searchBtn{
+  height: 44.8px;
+  background-color: #424874;
+  color:white;
+  border-radius: .25rem;
 }
-  .fixTableHead tbody {
+
+ @media only screen and (max-width: 1004px) {
+ #table{
   display: block;
-  width: 100%;
-  overflow: auto;
-  height: 50px;
-}
-.fixTableHead thead tr {
-  display: block;
-}
-.fixTableHead th,
-.fixTableHead  td {
-  padding: 5px 10px;
-  width: 200px;
-}
-th {
-  background: #ABDD93;
-}
-}
+  overflow-x: auto;
+ }
+ }
