@@ -1,83 +1,81 @@
 body {
-    /* font: normal medium/1.4 sans-serif; */
-    background-color:#DCD6F7;
-  }
-  thead{
-  background-color:#424874;
-  color:white;
-  }
-  h3{
-    text-align: center;
-    margin-top:5%;
-    color:#424874;
-  }
-  #searchBar{
-    margin:20px;
-    height:2.3rem;
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin:20px;
-    table-layout: fixed;
-  }
-  th, td {
-    text-align: center;
-    border: 1px solid #ccc;
-  }
-  tr{
-    height:3rem;
-  }
-  tbody{
-    background:#F4EEFF;
-  }
-img{
-    border-radius: 50%;
-    width:30px;
-    height:30px;
+  background-color: #dcd6f7;
 }
-.options-delete,.options-edit{
-    background-color: Transparent;
-    border:none;
-
+thead {
+  background-color: #424874;
+  color: white;
 }
-.options-delete i:hover{
-    color:red;
-    
+h3 {
+  text-align: center;
+  margin-top: 5%;
+  color: #424874;
 }
-.options-edit i:hover{
-  color:green;
-  
+#searchBar {
+  margin: 20px;
+  height: 2.3rem;
 }
-.btn{
-  height:3rem;
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px;
+  table-layout: fixed;
 }
-#addEntryButton{
- width:100%;
- padding: 0;
- display: flex;
- justify-content: space-between;
+th,
+td {
+  text-align: center;
+  border: 1px solid #ccc;
 }
-.addBtn{
-  background-color:#424874;
-  color:white;
-  border-radius: .25rem;
+tr {
+  height: 3rem;
 }
-#searchBar{
+tbody {
+  background: #f4eeff;
+}
+img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.options-delete,
+.options-edit {
+  background-color: Transparent;
+  border: none;
+}
+.options-delete i:hover {
+  color: red;
+}
+.options-edit i:hover {
+  color: green;
+}
+.btn {
+  height: 3rem;
+}
+#addEntryButton {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.addBtn {
+  background-color: #424874;
+  color: white;
+  border-radius: 0.25rem;
+}
+#searchBar {
   margin: 0;
   height: 44.8px;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
-#searchBtn{
+#searchBtn {
   height: 44.8px;
   background-color: #424874;
-  color:white;
-  border-radius: .25rem;
+  color: white;
+  border-radius: 0.25rem;
 }
 
- @media only screen and (max-width: 1004px) {
- #table{
-  display: block;
-  overflow-x: auto;
- }
- }
+@media only screen and (max-width: 1004px) {
+  #table {
+    display: block;
+    overflow-x: auto;
+  }
+}

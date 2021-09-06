@@ -13,10 +13,11 @@
   height: 2rem;
   margin-top: 0.8rem;
 }
-#gender, #birthDate{
+#gender,
+#birthDate {
   margin-top: 0.8rem;
   height: 2rem;
-  width:80%;
+  width: 80%;
 }
 
 label {
@@ -36,9 +37,9 @@ label {
   display: grid;
   grid-template-columns: 1fr 2fr;
 }
-.save{
+.save {
   position: relative;
-  width:149.65px;
+  width: 149.65px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -47,4 +48,3 @@ label {
     flex-direction: column;
   }
 }
-

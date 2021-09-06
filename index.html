@@ -1,104 +1,194 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./styles/addNewItem.css" />
+    <link rel="stylesheet" href="./styles/modal.css" />
+    <script type="text/javascript" src="./index.js"></script>
+    <script
+      type="text/javascript"
+      src="./functions/emailValidation.js"
+    ></script>
+    <title>CMS employees</title>
+  </head>
 
-<head>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./index.css" />
-  <link rel="stylesheet" href="./styles/addNewItem.css" />
-  <link rel="stylesheet" href="./styles/modal.css" />
-  <script type="text/javascript" src="./index.js"></script>
-  <script type="text/javascript" src="./functions/emailValidation.js"></script>
-  <title>CMS employees</title>
-</head>
-
-<body>
-  <h3>Baza de date angajati</h3>
-  <div class="d-flex col-12 p-0 m-auto ">
-    <div id="addEntryButton" class="col-11 m-auto">
-      <button  type="button" class="addBtn" onClick="showModal()">
-        Adauga
-      </button>
-      <div class="m-0">
-      <input type="text" id="searchBar" placeholder="Cauta.." onchange="drawTable()">
-      <button type="button" id="searchBtn" onclick="searchFor(this)">Cauta</button>
-    </div>
-    </div>
-    
-  </div>
-  <div class="mt-4">
-    <table id="table" class="col-11 p-0 m-auto">
-      <thead>
-        <tr>
-          <th sort-type="none" class="col-1 col-md-1 col-xs-1">Poza</th>
-          <th id="thead-lastName" class="col-2" sort-type="none" onclick="sortBy(this)">Nume</th>
-          <th id="thead-name" sort-type="none" class="col-2" onclick="sortBy(this)">Prenume</th>
-          <th id="thead-email" sort-type="none" class="col-2" onclick="sortBy(this)">Email</th>
-          <th id="thead-gender" sort-type="none" class="col-2" onclick="sortBy(this)">Gen</th>
-          <th id="thead-birthDate" sort-type="none" class="col-2" onclick="sortBy(this)">Data nasterii</th>
-          <th sort-type="none" class="col-1">Optiuni</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-  </div>
-
-  <div id="addEntryModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close" onClick="closeModal()">&times;</span>
-      <div class="picture">
-        <div class="pic-upload">
-          <img id="imagePlaceholder" src="../images/newUser.png" />
-        </div>
-        <div class="pic-options">
-          <label for="imageUpload" class="btn addBtn m-0">Adaugati imagine</label>
-          <input id="imageUpload" type="file" accept="image/*" style="display: none" onchange="showMyImage(this)" />
+  <body>
+    <h3>Baza de date angajati</h3>
+    <div class="d-flex col-12 p-0 m-auto">
+      <div id="addEntryButton" class="col-11 m-auto">
+        <button type="button" class="addBtn" onClick="showModal()">
+          Adauga
+        </button>
+        <div class="m-0">
+          <input
+            type="text"
+            id="searchBar"
+            placeholder="Cauta.."
+            onchange="drawTable()"
+          />
+          <button type="button" id="searchBtn" onclick="searchFor(this)">
+            Cauta
+          </button>
         </div>
       </div>
-      <div class="align-items-center" >
-        <!-- <h5 class="m-5">Introduceti datele angajatului</h5> -->
-        <form id="form" onSubmit="saveEntry()">
-          <div class="form-example">
-            <label for="lastName">Nume</label>
-            <input class="mt-3 input-modal" type="text" name="lastName" id="lastName" placeholder="Nume"oninvalid= "this.setCustomValidity('Introduceti numele.')" oninput="setCustomValidity('')" required />
-          </div>
-          <div class="form-example">
-            <label for="name">Prenume</label>
-            <input class="mt-3 input-modal" type="text" name="name" id="name" placeholder="Prenume" oninvalid= "this.setCustomValidity('Introduceti prenumele.')" oninput="setCustomValidity('')" required />
-          </div>
-          <div class="form-example">
-            <label for="email">Email</label>
-            <input class="mt-3 input-modal" type="text" name="email" id="email" placeholder="Email" oninvalid= "this.setCustomValidity('Introduceti un email.')" oninput="setCustomValidity('')" onchange="validateEmail()" required />
-          </div>
-          <div class="form-example">
-            <label for="gender">Gen</label>
-            <select class="mt-3" id="gender" name="gender" required>
-              <option value="" selected hidden>Selectati</option>
-              <option value="M">M</option>
-              <option value="F">F</option>
-            </select>
-          </div>
-          <div class="form-example">
-            <label for="birthDate">Data nasterii</label>
-            <input type="date" class="form-control mt-3" id="birthDate" name="birthDate"oninvalid= "this.setCustomValidity('Introduceti un data nasterii.')" oninput="setCustomValidity('')" required />
-          </div>
-          <div class="text-center m-4"> 
-            <button class="btn addBtn save" type="submit">
-              Salveaza
-            </button>
-          </div>
-          
-        </form>
-      </div>
-
     </div>
-  </div>
-</body>
+    <div class="mt-4">
+      <table id="table" class="col-11 p-0 m-auto">
+        <thead>
+          <tr>
+            <th sort-type="none" class="col-1 col-md-1 col-xs-1">Poza</th>
+            <th
+              id="thead-lastName"
+              class="col-2"
+              sort-type="none"
+              onclick="sortBy(this)"
+            >
+              Nume
+            </th>
+            <th
+              id="thead-name"
+              sort-type="none"
+              class="col-2"
+              onclick="sortBy(this)"
+            >
+              Prenume
+            </th>
+            <th
+              id="thead-email"
+              sort-type="none"
+              class="col-2"
+              onclick="sortBy(this)"
+            >
+              Email
+            </th>
+            <th
+              id="thead-gender"
+              sort-type="none"
+              class="col-2"
+              onclick="sortBy(this)"
+            >
+              Gen
+            </th>
+            <th
+              id="thead-birthDate"
+              sort-type="none"
+              class="col-2"
+              onclick="sortBy(this)"
+            >
+              Data nasterii
+            </th>
+            <th sort-type="none" class="col-1">Optiuni</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
+    <div id="addEntryModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onClick="closeModal()">&times;</span>
+        <div class="picture">
+          <div class="pic-upload">
+            <img id="imagePlaceholder" src="../images/newUser.png" />
+          </div>
+          <div class="pic-options">
+            <label for="imageUpload" class="btn addBtn m-0"
+              >Adaugati imagine</label
+            >
+            <input
+              id="imageUpload"
+              type="file"
+              accept="image/*"
+              style="display: none"
+              onchange="showMyImage(this)"
+            />
+          </div>
+        </div>
+        <div class="align-items-center">
+          <form id="form" onSubmit="saveEntry()">
+            <div class="form-example">
+              <label for="lastName">Nume</label>
+              <input
+                class="mt-3 input-modal"
+                type="text"
+                name="lastName"
+                id="lastName"
+                placeholder="Nume"
+                oninvalid="this.setCustomValidity('Introduceti numele.')"
+                oninput="setCustomValidity('')"
+                required
+              />
+            </div>
+            <div class="form-example">
+              <label for="name">Prenume</label>
+              <input
+                class="mt-3 input-modal"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Prenume"
+                oninvalid="this.setCustomValidity('Introduceti prenumele.')"
+                oninput="setCustomValidity('')"
+                required
+              />
+            </div>
+            <div class="form-example">
+              <label for="email">Email</label>
+              <input
+                class="mt-3 input-modal"
+                type="text"
+                name="email"
+                id="email"
+                placeholder="Email"
+                oninvalid="this.setCustomValidity('Introduceti un email.')"
+                oninput="setCustomValidity('')"
+                onchange="validateEmail()"
+                required
+              />
+            </div>
+            <div class="form-example">
+              <label for="gender">Gen</label>
+              <select class="mt-3" id="gender" name="gender" required>
+                <option value="" selected hidden>Selectati</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+              </select>
+            </div>
+            <div class="form-example">
+              <label for="birthDate">Data nasterii</label>
+              <input
+                type="date"
+                class="form-control mt-3"
+                id="birthDate"
+                name="birthDate"
+                oninvalid="this.setCustomValidity('Introduceti un data nasterii.')"
+                oninput="setCustomValidity('')"
+                required
+              />
+            </div>
+            <div class="text-center m-4">
+              <button class="btn addBtn save" type="submit">Salveaza</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
