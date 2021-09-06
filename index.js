@@ -28,11 +28,11 @@ function tableRow(rowData) {
     <td>${rowData.gender}</td>
     <td>${new Date(rowData.birthDate).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' })}</td>
     <td> 
-        <button class="options" onClick="editEntry(this)">
-            <img src="/images/edit.png"/>
+        <button class="options-edit" onClick="editEntry(this)">
+            <i class="fas fa-edit"></i>
         </button>
-        <button onClick="deleteEntry(this)">
-            <img src="/images/delete.png"/>
+        <button class="options-delete" onClick="deleteEntry(this)">
+            <i class="fas fa-times-circle"></i>
         </button>
     </td>
 </tr>`;

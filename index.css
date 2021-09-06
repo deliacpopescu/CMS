@@ -30,14 +30,18 @@ img{
     width:30px;
     height:30px;
 }
-.options{
+.options-delete,.options-edit{
     background-color: Transparent;
     border:none;
 
 }
-.options:hover{
-    background:#919196;
+.options-delete i:hover{
+    color:red;
     
+}
+.options-edit i:hover{
+  color:green;
+  
 }
 #addEntryButton{
   margin-left: 65px;
