@@ -1,0 +1,16 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /employees/{emplyee} {
+
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null
+                    && request.resource.data.img == resource.data.img
+                    && request.resource.data.lastName == resource.data.lastName
+                    && request.resource.data.name == resource.data.name
+                    && request.resource.data.email == resource.data.email
+                    && request.resource.data.gender == resource.data.gender
+                    && request.resource.data.birthDate == resource.data.birthDate;
+    }
+  }
+}
