@@ -9,6 +9,14 @@ CMS.prototype.addNewEmployee = function (data) {
     return firebase.firestore().collection('employees').add(data);
 };
 
+CMS.prototype.editExistingEmployee = function (id, data) {
+    return firebase.firestore().collection('employees').doc(id).update(data);
+};
+
+CMS.prototype.deleteExistingEmployee = function (id) {
+    return firebase.firestore().collection('employees').doc(id).delete();
+};
+
 CMS.prototype.getDocumentsInQuery = function (query, render) {
     query.onSnapshot((snapshot) => {
         if (!snapshot.size) {

@@ -74,49 +74,6 @@ window.onclick = function (event) {
 };
 
 
-
-
-
-function editEntry(btnElem) {
-  let rowElem = btnElem.parentNode.parentNode;
-  const rowData = {
-    id: parseInt(rowElem.id.replace("employee-", "")),
-    img: rowElem.querySelector("img").src,
-    lastName: rowElem.querySelectorAll("td")[1].innerText,
-    name: rowElem.querySelectorAll("td")[2].innerText,
-    email: rowElem.querySelectorAll("td")[3].innerText,
-    gender: rowElem.querySelectorAll("td")[4].innerText,
-    birthDate: rowElem.querySelectorAll("td")[5].innerText,
-  };
-
-  let modal = document.getElementById("addEntryModal");
-  modal.querySelector(".modal-content").id = rowData.id;
-  modal.querySelector("#imagePlaceholder").src = rowData.img;
-  modal.querySelector("#lastName").value = rowData.lastName;
-  modal.querySelector("#name").value = rowData.name;
-  modal.querySelector("#email").value = rowData.email;
-  modal.querySelector("#gender").value = rowData.gender;
-  let birthDate = new Date(rowData.birthDate);
-  birthDate.setMinutes(birthDate.getMinutes() - birthDate.getTimezoneOffset());
-  modal.querySelector("#birthDate").value = birthDate.toISOString().substring(0, 10);
-
-  showModal();
-}
-
-function deleteEntry(btnElem) {
-  let rowElem = btnElem.parentNode.parentNode;
-  const entryId = parseInt(rowElem.id.replace("employee-", ""));
-
-  let tableData = localStorage.getItem("tableData") || "[]";
-  tableData = JSON.parse(tableData);
-  const entryIndex = tableData.findIndex((obj) => obj.id == entryId);
-  tableData.splice(entryIndex, 1);
-  localStorage.setItem("tableData", JSON.stringify(tableData));
-
-  const table = document.querySelector("#table > tbody");
-  table.removeChild(rowElem);
-}
-
 function date2str(date, format) {
   var z = {
     M: date.getMonth() + 1,
