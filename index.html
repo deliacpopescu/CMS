@@ -24,7 +24,7 @@
       </button>
       <div class="m-0">
         <input type="text" id="searchBar" placeholder="Cauta.." onchange="drawTable()" />
-        <button type="button" id="searchBtn" onclick="searchFor(this)">
+        <button type="button" id="searchBtn" onclick="app.searchFor(this)">
           Cauta
         </button>
       </div>
@@ -35,19 +35,19 @@
       <thead>
         <tr>
           <th sort-type="none" class="col-1 col-md-1 col-xs-1">Poza</th>
-          <th id="thead-lastName" class="col-2" sort-type="none" onclick="sortBy(this)">
+          <th id="thead-lastName" class="col-2" sort-type="none" onclick="app.sortBy(this)">
             Nume
           </th>
-          <th id="thead-name" sort-type="none" class="col-2" onclick="sortBy(this)">
+          <th id="thead-name" sort-type="none" class="col-2" onclick="app.sortBy(this)">
             Prenume
           </th>
-          <th id="thead-email" sort-type="none" class="col-2" onclick="sortBy(this)">
+          <th id="thead-email" sort-type="none" class="col-2" onclick="app.sortBy(this)">
             Email
           </th>
-          <th id="thead-gender" sort-type="none" class="col-2" onclick="sortBy(this)">
+          <th id="thead-gender" sort-type="none" class="col-2" onclick="app.sortBy(this)">
             Gen
           </th>
-          <th id="thead-birthDate" sort-type="none" class="col-2" onclick="sortBy(this)">
+          <th id="thead-birthDate" sort-type="none" class="col-2" onclick="app.sortBy(this)">
             Data nasterii
           </th>
           <th sort-type="none" class="col-1">Optiuni</th>

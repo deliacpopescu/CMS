@@ -5,6 +5,13 @@ CMS.prototype.getAllEmployees = function (render) {
     this.getDocumentsInQuery(query, render);
 };
 
+CMS.prototype.getSortedEmployees = function (sortCriteria, sortType, render) {
+    const query = firebase.firestore()
+        .collection('employees')
+        .orderBy(sortCriteria, sortType);
+    this.getDocumentsInQuery(query, render);
+};
+
 CMS.prototype.addNewEmployee = function (data) {
     return firebase.firestore().collection('employees').add(data);
 };
