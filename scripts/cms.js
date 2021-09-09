@@ -16,13 +16,13 @@ function CMS() { // eslint-disable-line no-redeclare
   var that = this;
 
   firebase.firestore().enablePersistence()
-    .then(function() {
+    .then(function () {
       return firebase.auth().signInAnonymously();
     })
-    .then(function() {
+    .then(function () {
       that.initTemplates();
       that.initRouter();
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err);
     });
 }
@@ -30,13 +30,13 @@ function CMS() { // eslint-disable-line no-redeclare
 /**
  * Initializes the router for the FriendlyEats app.
  */
-CMS.prototype.initRouter = function() {
+CMS.prototype.initRouter = function () {
   this.router = new Navigo();
 
   var that = this;
   this.router
     .on({
-      '/': function() {
+      '/': function () {
         that.viewEmployees();
       }
     })
@@ -46,7 +46,7 @@ CMS.prototype.initRouter = function() {
     .firestore()
     .collection('employees')
     .limit(1)
-    .onSnapshot(function(snapshot) {
+    .onSnapshot(function (snapshot) {
       if (snapshot.empty) {
         that.router.navigate('/setup');
       }
@@ -89,124 +89,4 @@ function date2str(date, format) {
   return format.replace(/(y+)/g, function (v) {
     return date.getFullYear().toString().slice(-v.length);
   });
-}
-
-function sortBy(headerElem) {
-  let sortKey = headerElem.id;
-  let sortType = headerElem.getAttribute("sort-type");
-
-  let tableData = localStorage.getItem("tableData") || "[]";
-  tableData = JSON.parse(tableData);
-
-  switch (sortKey) {
-    case "thead-lastName":
-      switch (sortType) {
-        case "asc":
-          tableData.sort((a, b) => (a.lastName > b.lastName ? -1 : 1));
-          sortType = "desc";
-          break;
-        case "desc":
-          sortType = "none";
-          break;
-        default:
-          tableData.sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
-          sortType = "asc";
-          break;
-      }
-      break;
-    case "thead-name":
-      switch (sortType) {
-        case "asc":
-          tableData.sort((a, b) => (a.name > b.name ? -1 : 1));
-          sortType = "desc";
-          break;
-        case "desc":
-          sortType = "none";
-          break;
-        default:
-          tableData.sort((a, b) => (a.name > b.name ? 1 : -1));
-          sortType = "asc";
-          break;
-      }
-      break;
-    case "thead-email":
-      switch (sortType) {
-        case "asc":
-          tableData.sort((a, b) => (a.email > b.email ? -1 : 1));
-          sortType = "desc";
-          break;
-        case "desc":
-          sortType = "none";
-          break;
-        default:
-          tableData.sort((a, b) => (a.email > b.email ? 1 : -1));
-          sortType = "asc";
-          break;
-      }
-      break;
-    case "thead-gender":
-      switch (sortType) {
-        case "asc":
-          tableData.sort((a, b) => (a.gender > b.gender ? -1 : 1));
-          sortType = "desc";
-          break;
-        case "desc":
-          sortType = "none";
-          break;
-        default:
-          tableData.sort((a, b) => (a.gender > b.gender ? 1 : -1));
-          sortType = "asc";
-          break;
-      }
-      break;
-    case "thead-birthDate":
-      switch (sortType) {
-        case "asc":
-          tableData.sort((a, b) =>
-            new Date(a.birthDate) > new Date(b.birthDate) ? -1 : 1
-          );
-          sortType = "desc";
-          break;
-        case "desc":
-          sortType = "none";
-          break;
-        default:
-          tableData.sort((a, b) =>
-            new Date(a.birthDate) > new Date(b.birthDate) ? 1 : -1
-          );
-          sortType = "asc";
-          break;
-      }
-      break;
-  }
-
-  for (let child of headerElem.parentElement.children) {
-    child.setAttribute("sort-type", "none");
-  }
-  headerElem.setAttribute("sort-type", sortType);
-  tableContent(tableData);
-}
-
-function searchFor(searchBtn) {
-  let searchCriteria = searchBtn.previousElementSibling.value;
-
-  let tableData = localStorage.getItem("tableData") || "[]";
-  tableData = JSON.parse(tableData);
-
-  tableData = tableData.filter(
-    (elem) =>
-      elem.name.includes(searchCriteria) ||
-      elem.lastName.includes(searchCriteria) ||
-      elem.email.includes(searchCriteria) ||
-      elem.gender.includes(searchCriteria) ||
-      new Date(elem.birthDate)
-        .toLocaleDateString("ro-RO", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })
-        .includes(searchCriteria)
-  );
-
-  tableContent(tableData);
 }

@@ -263,9 +263,9 @@ CMS.prototype.showModal = function (btnElem) {
         modal.querySelector("#email").value = rowData.email;
         modal.querySelector("#gender").value = rowData.gender;
         rowData.birthDate = rowData.birthDate.replace('ianuarie', 'January').replace('februarie', 'February')
-        .replace('martie', 'March').replace('aprilie', 'April').replace('mai', 'May').replace('iunie', 'June')
-        .replace('iulie', 'July').replace('august', 'August').replace('septembrie', 'September')
-        .replace('octombrie', 'October').replace('noiembrie', 'November').replace('decembrie', 'December');
+            .replace('martie', 'March').replace('aprilie', 'April').replace('mai', 'May').replace('iunie', 'June')
+            .replace('iulie', 'July').replace('august', 'August').replace('septembrie', 'September')
+            .replace('octombrie', 'October').replace('noiembrie', 'November').replace('decembrie', 'December');
         let birthDate = new Date(rowData.birthDate);
         birthDate.setMinutes(birthDate.getMinutes() - birthDate.getTimezoneOffset());
         modal.querySelector("#birthDate").value = birthDate.toISOString().substring(0, 10);
