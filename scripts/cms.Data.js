@@ -1,39 +1,61 @@
-CMS.prototype.getAllEmployees = function (render) {
-    const query = firebase.firestore()
-        .collection('employees')
-        .orderBy('lastName', 'asc');
-    this.getDocumentsInQuery(query, render);
+CMS.prototype.getAllEmployees = function(render) {
+  const query = firebase
+    .firestore()
+    .collection("employees")
+    .orderBy("lastName", "asc");
+  this.getDocumentsInQuery(query, render);
 };
 
-CMS.prototype.getSortedEmployees = function (sortCriteria, sortType, render) {
-    const query = firebase.firestore()
-        .collection('employees')
-        .orderBy(sortCriteria, sortType);
-    this.getDocumentsInQuery(query, render);
+CMS.prototype.getFilteredEmployees = function(field, searchCriteria, render) {
+  const query = firebase
+    .firestore()
+    .collection("employees")
+    .where(field, ">=", searchCriteria)
+    .where(field, "<=", `${searchCriteria}\uf8ff`);
+  this.getDocumentsInQuery(query, render);
 };
 
-CMS.prototype.addNewEmployee = function (data) {
-    return firebase.firestore().collection('employees').add(data);
+CMS.prototype.getSortedEmployees = function(sortCriteria, sortType, render) {
+  const query = firebase
+    .firestore()
+    .collection("employees")
+    .orderBy(sortCriteria, sortType);
+  this.getDocumentsInQuery(query, render);
 };
 
-CMS.prototype.editExistingEmployee = function (id, data) {
-    return firebase.firestore().collection('employees').doc(id).update(data);
+CMS.prototype.addNewEmployee = function(data) {
+  return firebase
+    .firestore()
+    .collection("employees")
+    .add(data);
 };
 
-CMS.prototype.deleteExistingEmployee = function (id) {
-    return firebase.firestore().collection('employees').doc(id).delete();
+CMS.prototype.editExistingEmployee = function(id, data) {
+  return firebase
+    .firestore()
+    .collection("employees")
+    .doc(id)
+    .update(data);
 };
 
-CMS.prototype.getDocumentsInQuery = function (query, render) {
-    query.onSnapshot((snapshot) => {
-        if (!snapshot.size) {
-            return render();
-        }
+CMS.prototype.deleteExistingEmployee = function(id) {
+  return firebase
+    .firestore()
+    .collection("employees")
+    .doc(id)
+    .delete();
+};
 
-        snapshot.docChanges().forEach((change) => {
-            if (change.type === 'added' || change.type === 'modified') {
-                render(change.doc);
-            }
-        });
+CMS.prototype.getDocumentsInQuery = function(query, render) {
+  query.onSnapshot(snapshot => {
+    if (!snapshot.size) {
+      return render();
+    }
+
+    snapshot.docChanges().forEach(change => {
+      if (change.type === "added" || change.type === "modified") {
+        render(change.doc);
+      }
     });
+  });
 };
