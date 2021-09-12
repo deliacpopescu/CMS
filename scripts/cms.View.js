@@ -1,14 +1,5 @@
 "use strict";
 
-CMS.prototype.initTemplates = function() {
-  this.templates = {};
-
-  var that = this;
-  document.querySelectorAll(".template").forEach(function(el) {
-    that.templates[el.getAttribute("id")] = el;
-  });
-};
-
 CMS.prototype.tableRow = function(rowData) {
   return `
   <tr id="employee-${rowData.id}">
@@ -25,7 +16,7 @@ CMS.prototype.tableRow = function(rowData) {
         year: "numeric"
       })}</td>
       <td> 
-          <button class="options-edit" onClick="app.showModal(this)">
+          <button class="options-edit" onClick="app.showAddModal(this)">
               <i class="fas fa-edit"></i>
           </button>
           <button class="options-delete" onClick="app.deleteEmployee(this)">
@@ -146,11 +137,26 @@ CMS.prototype.searchFor = function(searchBtn) {
 };
 
 // TODO WiP to add the filters dropdown in the UI and update filterField and filterValue
-CMS.prototype.filterBy = async function(filterBtn) {
-  const filterField = filterBtn.id.replace("thead-", "");
-  const filterValue = "al";
-
+CMS.prototype.filterBy = async function(filterElem) {
   let that = this;
+
+  const filterField = filterElem.parentElement.parentElement.parentElement.id.replace(
+    "thead-",
+    ""
+  );
+  let filterValue;
+  if (filterField === "birthDate") {
+    filterValue = {
+      minDate: new Date(
+        filterElem.parentElement.querySelector("#minBirthDate").value
+      ),
+      maxDate: new Date(
+        filterElem.parentElement.querySelector("#maxBirthDate").value
+      )
+    };
+  } else {
+    filterValue = filterElem.value;
+  }
 
   let table = document.getElementById("table");
   table.getElementsByTagName("tbody")[0].innerHTML = "";
@@ -171,9 +177,14 @@ CMS.prototype.filterBy = async function(filterBtn) {
     filterValue,
     renderResults
   );
+  const modal = filterElem.parentElement.parentElement;
+
+  modal.style.display = "none";
+  filterElem.value = "";
 };
 
-CMS.prototype.sortBy = function(headerElem) {
+CMS.prototype.sortBy = function(sortBtn) {
+  let headerElem = sortBtn.parentElement;
   let sortKey = headerElem.id;
   let sortType = headerElem.getAttribute("sort-type");
 
@@ -263,12 +274,19 @@ CMS.prototype.sortBy = function(headerElem) {
 
   for (let child of headerElem.parentElement.children) {
     child.setAttribute("sort-type", "none");
+    if (child.children.length !== 0) {
+      child.children[0].setAttribute("class", "fas fa-sort-amount-down-alt");
+    }
   }
   headerElem.setAttribute("sort-type", sortType);
-  tableContent(tableData);
+  if (sortType == "asc") {
+    sortBtn.setAttribute("class", `fas fa-sort-amount-down-alt active`);
+  } else if (sortType == "desc") {
+    sortBtn.setAttribute("class", `fas fa-sort-amount-up-alt active`);
+  }
 };
 
-CMS.prototype.showModal = function(btnElem) {
+CMS.prototype.showAddModal = function(btnElem) {
   let that = this;
   let modal = document.getElementById("addEntryModal");
   let form = modal.querySelector("#form");
@@ -314,6 +332,7 @@ CMS.prototype.showModal = function(btnElem) {
       .toISOString()
       .substring(0, 10);
   } else {
+    modal.querySelector("#imagePlaceholder").src = that.defaultImage();
     form.addEventListener("submit", function() {
       that.addEmployee(modal);
     });
@@ -322,11 +341,24 @@ CMS.prototype.showModal = function(btnElem) {
   modal.style.display = "block";
 };
 
+CMS.prototype.showFilterModal = function(filterBtn) {
+  let that = this;
+  const filterField = filterBtn.parentElement.id.replace("thead-", "");
+  const modal = filterBtn.parentElement.querySelector("#filterModal");
+
+  modal.style.display = "block";
+};
+
 // When the user clicks on <span> (x), close the modal
 CMS.prototype.closeModal = function() {
-  let modal = document.getElementById("addEntryModal");
+  const modal = document.getElementById("addEntryModal");
   modal.querySelector(".modal-content").removeAttribute("id");
   modal.style.display = "none";
+};
+
+CMS.prototype.closeFilterModal = function() {
+  const modals = document.querySelectorAll("#filterModal");
+  modals.forEach(modal => modal.style.display = "none");
 };
 
 CMS.prototype.showMyImage = function(fileInput) {

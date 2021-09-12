@@ -73,6 +73,10 @@ img {
   color: white;
   border-radius: 0.25rem;
 }
+.active {
+  color: cadetblue;
+}
+
 
 @media only screen and (max-width: 1004px) {
   #table {
