@@ -7,7 +7,7 @@ function CMS() {
     email: "",
     gender: "",
     birthDate: "",
-    sort: "lastName",
+    sort: "lastName"
   };
 
   var that = this;
@@ -37,7 +37,7 @@ CMS.prototype.initRouter = function() {
     .on({
       "/": function() {
         that.viewEmployees();
-      },
+      }
     })
     .resolve();
 };
@@ -67,7 +67,7 @@ function date2str(date, format) {
     d: date.getDate(),
     h: date.getHours(),
     m: date.getMinutes(),
-    s: date.getSeconds(),
+    s: date.getSeconds()
   };
   format = format.replace(/(M+|d+|h+|m+|s+)/g, function(v) {
     return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2);
