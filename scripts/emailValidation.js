@@ -4,7 +4,7 @@ function regexValidation(email) {
 }
 function validateEmail() {
   let emailVal = document.getElementById("email").value;
-  
+
   if (regexValidation(emailVal)) {
     document.getElementById("email").style.borderColor = "green";
   } else {
@@ -13,4 +13,3 @@ function validateEmail() {
     alert("Introduceti o adresa de email valida");
   }
 }
-
